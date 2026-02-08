@@ -1,0 +1,234 @@
+"use client";
+
+import Image from "next/image";
+import { useRef } from "react";
+
+const items = [
+  {
+    id: 1,
+    title: "Power Bank",
+    price: "₦ 17,000",
+    img: "/assets/images/phone.svg",
+    location: "Jos",
+    newLabel: "Brand New",
+  },
+  {
+    id: 2,
+    title: "Gown",
+    price: "₦ 17,000",
+    img: "/assets/images/dress.svg",
+    location: "Jos",
+    newLabel: "Brand New",
+  },
+  {
+    id: 3,
+    title: "Boots",
+    price: "₦ 17,000",
+    img: "/assets/images/bgshoe.svg",
+    location: "Jos",
+    newLabel: "Brand New",
+  },
+  {
+    id: 4,
+    title: "Apple Glasses",
+    price: "₦ 17,000",
+    img: "/assets/images/phone.svg",
+    location: "Jos",
+    newLabel: "Brand New",
+  },
+  {
+    id: 5,
+    title: "Flower Vase",
+    price: "₦ 17,000",
+    img: "/assets/images/furniture.svg",
+    location: "Jos",
+    newLabel: "",
+  },
+];
+
+export default function HotDeals() {
+  const scrollRef = useRef<HTMLDivElement>(null);
+
+  const scrollLeft = () => {
+    scrollRef.current?.scrollBy({
+      left: -320,
+      behavior: "smooth",
+    });
+  };
+
+  const scrollRight = () => {
+    scrollRef.current?.scrollBy({
+      left: 320,
+      behavior: "smooth",
+    });
+  };
+
+  return (
+    <section className="max-w-[1400px] mx-auto px-6 lg:px-12 pb-16 mt-10">
+      {/* HEADER */}
+      <div className="relative flex items-center mb-10">
+        <h3 className="absolute left-1/2 -translate-x-1/2 text-4xl lg:text-5xl font-extrabold text-black">
+          Hot Deals <span className="text-[#FF6B35]">Today!</span>
+        </h3>
+
+        <div className="ml-auto hidden md:flex">
+          <a
+            href="#"
+            className="text-sm font-medium text-gray-700 hover:text-[#FF6B35] transition"
+          >
+            See more
+          </a>
+        </div>
+      </div>
+
+      {/* CAROUSEL */}
+      <div className="relative">
+        {/* LEFT CHEVRON */}
+        <button
+          aria-label="Scroll left"
+          onClick={scrollLeft}
+          className="hidden lg:flex absolute left-0 top-1/2 -translate-y-1/2 -translate-x-6 z-20 bg-[#FF6B35] w-14 h-14 rounded-full items-center justify-center text-white shadow-lg hover:bg-[#FF5520] transition"
+        >
+          <svg
+            className="w-6 h-6"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="2.5"
+            viewBox="0 0 24 24"
+          >
+            <path d="M15 19l-7-7 7-7" />
+          </svg>
+        </button>
+
+        {/* SCROLL CONTAINER */}
+        <div
+          ref={scrollRef}
+          className="flex gap-6 overflow-x-auto pb-6 scroll-smooth
+          [&::-webkit-scrollbar]:hidden
+          [-ms-overflow-style:none]
+          [scrollbar-width:none]"
+        >
+          {items.map((item) => (
+            <div
+              key={item.id}
+              className="relative min-w-[260px] bg-white rounded-[24px] border-2 border-[#FF6B35] px-4 pt-4 pb-5 shadow-sm"
+            >
+              {/* HOT BADGE */}
+              <div className="absolute -top-3 left-3 z-10">
+                <div className="relative">
+                  <div className="bg-[#FF6B35] text-white text-sm font-bold px-4 py-1.5 rounded-r-lg">
+                    Hot 🔥
+                  </div>
+                  <div className="absolute left-0 -bottom-2 w-0 h-0 border-t-[8px] border-t-[#FF6B35] border-r-[8px] border-r-transparent" />
+                </div>
+              </div>
+
+              {/* HEART */}
+              <button className="absolute top-3 right-3 text-gray-400 hover:text-[#FF6B35] transition">
+                <svg
+                  className="w-6 h-6"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="1.8"
+                  viewBox="0 0 24 24"
+                >
+                  <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78L12 21.23l7.78-7.78a5.5 5.5 0 0 0 0-7.78z" />
+                </svg>
+              </button>
+
+              {/* IMAGE */}
+              <div className="mt-6 relative">
+                <div className="bg-[#F7F7F7] rounded-2xl p-6 shadow-md rotate-[-2deg]">
+                  <div className="relative w-full h-[180px]">
+                    <Image
+                      src={item.img}
+                      alt={item.title}
+                      fill
+                      className="object-contain"
+                    />
+                  </div>
+                </div>
+
+                {/* VERIFIED */}
+                <div className="absolute right-0 bottom-2">
+                  <div className="w-7 h-7 bg-emerald-500 rounded-full flex items-center justify-center text-white shadow">
+                    <svg
+                      className="w-4 h-4"
+                      fill="none"
+                      stroke="currentColor"
+                      strokeWidth="3"
+                      viewBox="0 0 24 24"
+                    >
+                      <path d="M5 13l4 4L19 7" />
+                    </svg>
+                  </div>
+                </div>
+              </div>
+
+              {/* PRICE & TITLE */}
+              <div className="mt-4">
+                <p className="text-[#FF6B35] font-extrabold text-2xl">
+                  {item.price}
+                </p>
+                <h4 className="mt-1 font-semibold text-lg text-black">
+                  {item.title}
+                </h4>
+              </div>
+
+              {/* RATING */}
+              <div className="mt-1.5 flex gap-0.5">
+                {[1, 2, 3, 4].map((i) => (
+                  <svg
+                    key={i}
+                    className="w-5 h-5 text-[#FF6B35]"
+                    viewBox="0 0 24 24"
+                    fill="currentColor"
+                  >
+                    <path d="M12 .587l3.668 7.431L24 9.748l-6 5.858L19.335 24 12 20.201 4.665 24 6 15.606 0 9.748l8.332-1.73L12 .587z" />
+                  </svg>
+                ))}
+                <svg
+                  className="w-5 h-5 text-gray-300"
+                  viewBox="0 0 24 24"
+                  fill="currentColor"
+                >
+                  <path d="M12 .587l3.668 7.431L24 9.748l-6 5.858L19.335 24 12 20.201 4.665 24 6 15.606 0 9.748l8.332-1.73L12 .587z" />
+                </svg>
+              </div>
+
+              {/* LOCATION */}
+              <div className="mt-3 flex items-center justify-between text-sm">
+                <div className="flex items-center gap-1.5 text-gray-600">
+                  <span>📍</span>
+                  <span>{item.location}</span>
+                </div>
+                {item.newLabel && (
+                  <span className="font-medium text-gray-700">
+                    {item.newLabel}
+                  </span>
+                )}
+              </div>
+            </div>
+          ))}
+        </div>
+
+        {/* RIGHT CHEVRON */}
+        <button
+          aria-label="Scroll right"
+          onClick={scrollRight}
+          className="hidden lg:flex absolute right-0 top-1/2 -translate-y-1/2 translate-x-6 z-20 bg-[#FF6B35] w-14 h-14 rounded-full items-center justify-center text-white shadow-lg hover:bg-[#FF5520] transition"
+        >
+          <svg
+            className="w-6 h-6"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="2.5"
+            viewBox="0 0 24 24"
+          >
+            <path d="M9 5l7 7-7 7" />
+          </svg>
+        </button>
+      </div>
+    </section>
+  );
+}
