@@ -45,14 +45,14 @@ export default function LocationDropdown({
   }
 
   return (
-    <div className={(className || "") + " relative"} ref={ref}>
+    <div className={(className || "") + " relative min-w-0"} ref={ref}>
       <button
         type="button"
         onClick={() => setOpen((v) => !v)}
-        className="flex items-center gap-2 rounded-md border border-orange-500 px-4 py-2 text-sm text-zinc-700 hover:bg-zinc-50 cursor-pointer"
+        className="w-full h-full flex items-center gap-2 rounded-md border border-orange-500 px-4 py-2 text-sm text-zinc-700 hover:bg-zinc-50 cursor-pointer"
       >
-        {selected}
-        <ChevronDown size={16} />
+        <span className="truncate pr-2">{selected}</span>
+        <ChevronDown size={16} className="flex-shrink-0" />
       </button>
 
       {open && (

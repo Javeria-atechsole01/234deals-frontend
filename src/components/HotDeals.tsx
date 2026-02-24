@@ -67,7 +67,12 @@ export default function HotDeals() {
     <section className="max-w-[1400px] mx-auto px-6 lg:px-12 pb-16 mt-10">
       {/* HEADER */}
       <div className="relative flex items-center mb-10">
-        <h3 className="absolute left-1/2 -translate-x-1/2 text-4xl lg:text-5xl font-extrabold text-black">
+        <h3
+          className="absolute left-1/2 -translate-x-1/2 
+  whitespace-nowrap 
+  text-2xl sm:text-3xl md:text-4xl lg:text-5xl 
+  font-extrabold text-black text-center"
+        >
           Hot Deals <span className="text-[#FF6B35]">Today!</span>
         </h3>
 
@@ -81,7 +86,7 @@ export default function HotDeals() {
         </div>
       </div>
 
-      {/* CAROUSEL */}
+      {/* CAROUSEL on lg, mobile-first: 2-column grid */}
       <div className="relative">
         {/* LEFT CHEVRON */}
         <button
@@ -100,18 +105,18 @@ export default function HotDeals() {
           </svg>
         </button>
 
-        {/* SCROLL CONTAINER */}
+        {/* SCROLL CONTAINER: grid on mobile (2 cols, equal rows), carousel on lg */}
         <div
           ref={scrollRef}
-          className="flex gap-6 overflow-x-auto pb-6 scroll-smooth
-          [&::-webkit-scrollbar]:hidden
-          [-ms-overflow-style:none]
-          [scrollbar-width:none]"
+          className={
+            "flex gap-4 overflow-x-auto pb-6 scroll-smooth snap-x snap-mandatory lg:gap-6 " +
+            "[&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]"
+          }
         >
           {items.map((item) => (
             <div
               key={item.id}
-              className="relative min-w-[260px] bg-white rounded-[24px] border-2 border-[#FF6B35] px-4 pt-4 pb-5 shadow-sm"
+              className="relative shrink-0 w-[260px] sm:w-[240px] md:w-[260px] lg:min-w-[260px] bg-white rounded-[24px] border-2 border-[#FF6B35] px-4 pt-4 pb-5 shadow-sm h-full flex flex-col snap-start min-h-[320px] lg:min-h-0"
             >
               {/* HOT BADGE */}
               <div className="absolute -top-3 left-3 z-10">
@@ -137,14 +142,14 @@ export default function HotDeals() {
               </button>
 
               {/* IMAGE */}
-              <div className="mt-6 relative">
-                <div className="bg-[#F7F7F7] rounded-2xl p-6 shadow-md rotate-[-2deg]">
-                  <div className="relative w-full h-[180px]">
+              <div className="mt-6 relative flex-none">
+                <div className="bg-[#F7F7F7] rounded-2xl p-3 sm:p-6 shadow-md rotate-[-1deg] sm:rotate-[-2deg]">
+                  <div className="relative w-full pb-[66%] sm:pb-[60%] lg:pb-0 lg:h-[180px]">
                     <Image
                       src={item.img}
                       alt={item.title}
                       fill
-                      className="object-contain"
+                      className="absolute inset-0 object-cover"
                     />
                   </div>
                 </div>
@@ -166,11 +171,11 @@ export default function HotDeals() {
               </div>
 
               {/* PRICE & TITLE */}
-              <div className="mt-4">
-                <p className="text-[#FF6B35] font-extrabold text-2xl">
+              <div className="mt-4 flex-1">
+                <p className="text-[#FF6B35] font-extrabold text-xl sm:text-2xl">
                   {item.price}
                 </p>
-                <h4 className="mt-1 font-semibold text-lg text-black">
+                <h4 className="mt-1 font-semibold text-base sm:text-lg text-black line-clamp-2">
                   {item.title}
                 </h4>
               </div>

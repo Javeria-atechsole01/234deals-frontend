@@ -53,50 +53,49 @@ function Stars() {
 
 export default function FeaturedAds() {
   return (
-    <section className="max-w-[1400px] mx-auto px-6 lg:px-12 pb-16 mt-8">
+    <section className="max-w-[1400px] mx-auto px-4 lg:px-12 pb-16 mt-8">
       <h3 className="text-3xl font-extrabold text-[#FF6B35] mb-6">Featured Ads</h3>
 
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
         {featured.map((it) => (
           <article
             key={it.id}
-            className="relative rounded-2xl overflow-hidden bg-gradient-to-r from-[#C84312] to-[#DE5A28] p-6 text-white shadow-lg"
-              style={{ minHeight: 220 }}
+            className="relative rounded-2xl overflow-hidden bg-gradient-to-r from-[#C84312] to-[#DE5A28] p-4 lg:p-6 text-white shadow-lg flex flex-col lg:flex-row gap-4 lg:gap-6 min-h-[220px]"
           >
-            <div className="absolute top-4 right-4">
+            <div className="absolute top-4 right-4 lg:block">
               <div className="w-9 h-9 bg-emerald-400 rounded-full flex items-center justify-center text-white font-bold">✓</div>
             </div>
 
-              <div className="flex gap-6 items-stretch">
-              <div className="flex-shrink-0 relative">
-                  <div className="relative w-[300px] h-full rounded-xl overflow-hidden border-4 border-white p-1 bg-white">
-                  <Image src={it.img} alt={it.title} fill className="object-cover" />
-                </div>
-
-                <div className="absolute top-3 right-3">
-                  <div className="w-8 h-8 bg-white/90 rounded-full flex items-center justify-center text-gray-600">♡</div>
+            <div className="flex-shrink-0 relative w-full lg:w-[300px] lg:h-[300px]">
+              <div className="relative w-full rounded-xl overflow-hidden border-4 border-white p-1 bg-white h-full">
+                <div className="relative w-full pb-[66%] lg:pb-0 lg:h-full">
+                  <Image src={it.img} alt={it.title} fill className="absolute inset-0 object-cover" />
                 </div>
               </div>
 
-              <div className="flex-1 flex flex-col justify-between">
-                <div>
-                  <div className="flex items-start justify-between">
-                    <div>
-                      <p className="text-white font-extrabold text-xl">{it.price}</p>
-                      <h4 className="mt-2 text-white text-2xl font-semibold">{it.title}</h4>
-                    </div>
-                  </div>
+              <div className="absolute top-3 right-3">
+                <div className="w-8 h-8 bg-white/90 rounded-full flex items-center justify-center text-gray-600">♡</div>
+              </div>
+            </div>
 
-                  <p className="mt-4 text-white/90 text-sm leading-relaxed line-clamp-4">{it.desc}</p>
-
-                  <div className="mt-4 flex items-center gap-3">
-                    <Stars />
+            <div className="flex-1 flex flex-col justify-between">
+              <div>
+                <div className="flex items-start justify-between">
+                  <div>
+                    <p className="text-white font-extrabold text-lg sm:text-xl">{it.price}</p>
+                    <h4 className="mt-2 text-white text-xl sm:text-2xl font-semibold">{it.title}</h4>
                   </div>
+                </div>
 
-                  <div className="mt-4 flex items-center gap-3 text-sm text-white/90">
-                    <span className="flex items-center gap-2">📍 <span>{it.location}</span></span>
-                    <span className="ml-auto flex items-center gap-2">👍 <span className="font-semibold">{it.likes}</span></span>
-                  </div>
+                <p className="mt-3 text-white/90 text-sm leading-relaxed line-clamp-3 sm:line-clamp-4">{it.desc}</p>
+
+                <div className="mt-4 flex items-center gap-3">
+                  <Stars />
+                </div>
+
+                <div className="mt-4 flex items-center gap-3 text-sm text-white/90">
+                  <span className="flex items-center gap-2">📍 <span>{it.location}</span></span>
+                  <span className="ml-auto flex items-center gap-2">👍 <span className="font-semibold">{it.likes}</span></span>
                 </div>
               </div>
             </div>

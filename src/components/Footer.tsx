@@ -17,7 +17,7 @@ export default function Footer() {
       </div>
 
       <div className="max-w-[1200px] mx-auto px-6 py-12">
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-8 items-start">
+          <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-4 gap-6 sm:gap-8 items-start">
           <div>
             <h5 className="text-sm font-semibold mb-4">OUR COMPANY</h5>
             <ul className="space-y-3 text-sm text-gray-700">
@@ -51,7 +51,7 @@ export default function Footer() {
 
           <div className="flex flex-col items-end">
             <h5 className="text-sm font-semibold mb-4">Follow us on</h5>
-            <div className="flex items-center gap-3 mb-6">
+            <div className="flex items-center gap-3 mb-6 justify-center md:justify-end">
               {/* Social SVG icons */}
               <a
                 aria-label="instagram"
@@ -153,7 +153,7 @@ export default function Footer() {
       </div>
 
       <div className="w-full bg-[#efe8e8]">
-        <div className="max-w-[1200px] mx-auto px-6 py-4">
+        <div className="max-w-[1200px] mx-auto px-4 sm:px-6 py-4">
           <p className="text-center text-sm text-gray-800 font-medium">
             Copyright © 2025. 234Deals, All Rights Reserved.
           </p>

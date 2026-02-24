@@ -19,19 +19,19 @@ const recent = [
 
 export default function RecentSearches() {
   return (
-    <section className="max-w-[1400px] mx-auto px-6 lg:px-12 pb-16 mt-8">
+    <section className="max-w-[1400px] mx-auto px-4 lg:px-12 pb-16 mt-8">
       <h3 className="text-3xl font-extrabold text-[#FF6B35] mb-6">Recent Searches</h3>
 
-      <div className="flex flex-wrap gap-6">
+      <div className="flex gap-3 lg:gap-6 overflow-x-auto lg:overflow-visible no-scrollbar snap-x snap-mandatory px-1 lg:flex-wrap lg:items-start">
         {recent.map((it) => (
-          <div key={it.id} className="w-[120px] flex flex-col items-center">
-            <div className="w-[100px] h-[100px] rounded-md overflow-hidden border-4 border-[#FF6B35] p-1 bg-white shadow-sm">
-              <div className="relative w-full h-full">
-                <Image src={it.img} alt={it.title} fill className="object-contain" />
+          <div key={it.id} className="shrink-0 w-[110px] lg:w-[120px] flex flex-col items-center snap-start">
+            <div className="w-full max-w-[140px] lg:w-[100px] lg:h-[100px] rounded-md overflow-hidden border-4 border-[#FF6B35] p-1 bg-white shadow-sm">
+              <div className="relative w-full pb-[100%] lg:pb-0 lg:h-full">
+                <Image src={it.img} alt={it.title} fill className="absolute inset-0 object-contain p-2" />
               </div>
             </div>
 
-            <div className="mt-2 text-sm text-gray-700 text-center font-medium">{it.title}</div>
+            <div className="mt-2 text-sm text-gray-700 text-center font-medium line-clamp-1 w-full">{it.title}</div>
           </div>
         ))}
       </div>
