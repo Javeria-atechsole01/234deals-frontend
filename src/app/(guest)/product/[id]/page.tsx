@@ -2,6 +2,7 @@
 import { useState } from "react"
 import Navbar from '../../../../components/Navbar'
 import Footer from '../../../../components/Footer'
+import Link from 'next/link'
 import SimilarItems from '../../../../components/SimilarItems'
 import Button from '../../../../components/ui/Button'
 
@@ -15,6 +16,7 @@ export default function ProductPage({ params }: Props) {
     title: 'iPhone 12 Pro Max 256GB - Deep Purple',
     desc: 'Premium smartphone in excellent condition with complete accessories',
     price: '₦317,000',
+    sellerId: 'ola-gadgets',
     images: [
       '/assets/images/bgphone.svg',
       '/assets/images/bgphone.svg',
@@ -103,11 +105,16 @@ export default function ProductPage({ params }: Props) {
 
               <div className="border-t border-b border-gray-100 py-3">
                 <div className="flex items-center gap-3 mb-3">
-                  <div className="w-10 h-10 rounded-full bg-orange-500 text-white flex items-center justify-center font-bold">OG</div>
-                  <div>
-                    <div className="font-semibold">Ola Gadgets <span className="text-green-600">✔</span></div>
-                    <div className="text-yellow-400">⭐️⭐️⭐️☆☆</div>
-                  </div>
+                    <div className="w-10 h-10 rounded-full bg-orange-500 text-white flex items-center justify-center font-bold">OG</div>
+                    <div>
+                      <div className="font-semibold">
+                        <Link href={`/seller/${product.sellerId}`} className="hover:underline text-orange-600">Ola Gadgets</Link> <span className="text-green-600">✔</span>
+                      </div>
+                      <div className="text-yellow-400">⭐️⭐️⭐️☆☆</div>
+                      <div className="mt-2">
+                        <Link href={`/seller/${product.sellerId}`} className="text-sm text-orange-500 font-medium">View Seller Profile</Link>
+                      </div>
+                    </div>
                 </div>
 
                 <div className="grid grid-cols-2 gap-2 text-sm text-gray-700">
@@ -119,8 +126,8 @@ export default function ProductPage({ params }: Props) {
               </div>
 
               <div className="mt-4 space-y-2">
-                <button className="w-full bg-orange-600 text-white py-2 rounded">🔎 View Seller Profile</button>
-                <button className="w-full bg-orange-600 text-white py-2 rounded">📋 See All Ads from Seller</button>
+                <Link href={`/seller/${product.sellerId}`} className="w-full inline-block text-center bg-orange-600 text-white py-2 rounded">🔎 View Seller Profile</Link>
+                <Link href={`/seller/${product.sellerId}`} className="w-full inline-block text-center bg-orange-600 text-white py-2 rounded">📋 See All Ads from Seller</Link>
               </div>
             </div>
           </aside>
