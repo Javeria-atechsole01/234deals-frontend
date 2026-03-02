@@ -130,7 +130,9 @@ export default function ForgotPasswordPage() {
                   {[0, 1, 2, 3].map((i) => (
                     <input
                       key={i}
-                      ref={(el) => (inputsRef.current[i] = el)}
+                      ref={(el) => {
+  inputsRef.current[i] = el;
+}}
                       value={otp[i]}
                       onChange={(e) => handleOtpChange(i, e.target.value)}
                       onKeyDown={(e) => {
