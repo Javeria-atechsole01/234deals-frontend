@@ -41,15 +41,18 @@ export const authOptions: NextAuthOptions = {
     }),
   ],
   callbacks: {
-    async jwt({ token, user }: { token: JWT & { role?: string }; user?: AppUser | undefined }) {
+    async jwt({ token, user }) {
       // On sign in, attach role from the user to token
-      if (user?.role) token.role = user.role;
+      if ((user as AppUser | undefined)?.role) {
+        (token as JWT & { role?: string }).role = (user as AppUser).role;
+      }
       return token;
     },
-    async session({ session, token }: { session: Session; token: JWT & { role?: string } }) {
+    async session({ session, token }) {
       // Expose role on the session's user object
       if (session.user) {
-        (session.user as unknown as { role?: string }).role = token.role ?? ROLES.GUEST;
+        (session.user as unknown as { role?: string }).role =
+          (token as JWT & { role?: string }).role ?? ROLES.GUEST;
       }
       return session;
     },

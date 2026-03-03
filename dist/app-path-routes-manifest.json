@@ -1,0 +1,17 @@
+{
+  "/(guest)/product/[id]/page": "/product/[id]",
+  "/(guest)/seller/[id]/page": "/seller/[id]",
+  "/_global-error/page": "/_global-error",
+  "/_not-found/page": "/_not-found",
+  "/api/auth/[...nextauth]/route": "/api/auth/[...nextauth]",
+  "/api/deals/[id]/route": "/api/deals/[id]",
+  "/api/deals/route": "/api/deals",
+  "/deals/[id]/page": "/deals/[id]",
+  "/deals/page": "/deals",
+  "/forgot-password/page": "/forgot-password",
+  "/login/page": "/login",
+  "/page": "/",
+  "/signin/page": "/signin",
+  "/signup/page": "/signup",
+  "/sitemap.xml/route": "/sitemap.xml"
+}

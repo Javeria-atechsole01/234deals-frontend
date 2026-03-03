@@ -13,8 +13,15 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "234 Deals",
-  description: "Marketplace platform",
+  title: {
+    default: "234Deals — Nigeria’s #1 Marketplace",
+    template: "%s | 234Deals",
+  },
+  description: "234Deals is a modern marketplace platform for buying and selling in Nigeria.",
+  metadataBase: new URL("https://www.example-234deals.com"),
+  alternates: {
+    canonical: "/",
+  },
 };
 
 export default function RootLayout({
