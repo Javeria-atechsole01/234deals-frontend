@@ -2,8 +2,7 @@ import type { NextConfig } from "next";
 import path from "path";
 
 const nextConfig: NextConfig = {
-  // Use "dist" as the build output directory to make production artifacts explicit.
-  distDir: "dist",
+  // Vercel expects the default ".next" output directory
   turbopack: {
     root: __dirname,
     resolveAlias: {
