@@ -60,13 +60,27 @@ const items: AdItem[] = [
 ];
 
 
-export default function Recommended() {
+function matchesQuery(it: AdItem, q?: string, category?: string) {
+  const text = `${it.title} ${it.desc ?? ""}`.toLowerCase();
+  const includeQ = q ? text.includes(q.toLowerCase()) : true;
+  if (!includeQ) return false;
+  if (!category) return true;
+  const c = category.toLowerCase();
+  if (c === "phones") return /(phone|iphone|android|smartphone)/i.test(text);
+  if (c === "fashion") return /(dress|gown|sneaker|shoe|clothing)/i.test(text);
+  if (c === "electronics") return /(tv|speaker|audio|projector)/i.test(text);
+  if (c === "vehicle" || c === "vehicles" || c === "car" || c === "cars") return /(toyota|chevrolet|car)/i.test(text);
+  return true;
+}
+
+export default function Recommended({ query, category }: { query?: string; category?: string }) {
+  const filtered = items.filter((it) => matchesQuery(it, query, category));
   return (
     <section className="max-w-[1400px] mx-auto px-4 lg:px-12 pb-16">
       <h3 className="text-3xl font-extrabold text-[#FF6B35] mb-6">Recommended for you.</h3>
 
       <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-4 gap-3 auto-rows-[1fr] items-stretch">
-        {items.map((it) => (
+        {filtered.map((it) => (
           <AdCard key={it.id} item={it} />
         ))}
       </div>

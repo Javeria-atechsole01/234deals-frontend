@@ -1,5 +1,6 @@
 import React from "react";
 import Image from "next/image";
+import Link from "next/link";
 
 const categories = [
   { name: "Post ad", src: "/assets/images/post-ad.png" },
@@ -11,6 +12,20 @@ const categories = [
   { name: "Agriculture & food", src: "/assets/images/foodbaasket.svg" },
   { name: "Sports", src: "/assets/images/sports.svg" },
 ];
+
+function toSlug(name: string) {
+  const map: Record<string, string> = {
+    "Fashion": "fashion",
+    "Phones & tablets": "phones",
+    "Computers & acc.": "computer",
+    "Furniture & appliances": "furniture",
+    "Babies & kids": "babies",
+    "Agriculture & food": "agriculture",
+    "Sports": "sports",
+    "Post ad": "sell",
+  };
+  return map[name] ?? name.toLowerCase().replace(/\s+&\s+|\s+/g, "-");
+}
 
 export default function CategoryBar() {
   // Split categories into two rows
@@ -28,7 +43,11 @@ export default function CategoryBar() {
       <div className="overflow-x-auto mb-3">
         <div className="flex gap-4 snap-x snap-mandatory">
           {firstRow.map((c) => (
-            <div key={c.name} className="flex-none w-[110px] snap-center">
+            <Link
+              key={c.name}
+              href={c.name === "Post ad" ? "/sell" : `/search?category=${encodeURIComponent(toSlug(c.name))}`}
+              className="flex-none w-[110px] snap-center block"
+            >
               <div
                 className="w-[100px] h-[100px] mx-auto rounded-lg p-2 flex items-center justify-center border-4 shadow-md"
                 style={{ borderColor: "#e95a24" }}
@@ -44,7 +63,7 @@ export default function CategoryBar() {
               <div className="mt-2 text-center text-[13px] font-semibold text-black leading-[1.15]">
                 {c.name}
               </div>
-            </div>
+            </Link>
           ))}
         </div>
       </div>
@@ -53,7 +72,11 @@ export default function CategoryBar() {
       <div className="overflow-x-auto">
         <div className="flex gap-4 snap-x snap-mandatory">
           {secondRow.map((c) => (
-            <div key={c.name} className="flex-none w-[110px] snap-center">
+            <Link
+              key={c.name}
+              href={`/search?category=${encodeURIComponent(toSlug(c.name))}`}
+              className="flex-none w-[110px] snap-center block"
+            >
               <div
                 className="w-[100px] h-[100px] mx-auto rounded-lg p-2 flex items-center justify-center border-4 shadow-md"
                 style={{ borderColor: "#e95a24" }}
@@ -69,7 +92,7 @@ export default function CategoryBar() {
               <div className="mt-2 text-center text-[13px] font-semibold text-black leading-[1.15]">
                 {c.name}
               </div>
-            </div>
+            </Link>
           ))}
         </div>
       </div>

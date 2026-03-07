@@ -1,17 +1,21 @@
 "use client"
-import { useState } from "react"
-import { useParams } from "next/navigation"
-import Navbar from "../../../../components/Navbar"
-import Footer from "../../../../components/Footer"
-import Link from "next/link"
-import SimilarItems from "../../../../components/SimilarItems"
-import Button from "../../../../components/ui/Button"
+import React, { useState } from "react"
+import Navbar from '../../../../components/Navbar'
+import Footer from '../../../../components/Footer'
+import Link from 'next/link'
+import SimilarItems from '../../../../components/SimilarItems'
+import Button from '../../../../components/ui/Button'
 
-export default function ProductPage() {
-  const { id } = useParams<{ id: string }>()
+type Props = {
+  params: Promise<{ id: string }>
+}
 
+export default function ProductPage({ params }: Props) {
+  // Unwrap params using React.use()
+  const { id } = React.use(params);
+  
   const product = {
-    id,
+    id: id,
     title: 'iPhone 12 Pro Max 256GB - Deep Purple',
     desc: 'Premium smartphone in excellent condition with complete accessories',
     price: '₦317,000',

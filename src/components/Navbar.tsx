@@ -21,6 +21,7 @@ import {
   Grid,
 } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
+import { useRouter } from "next/navigation";
 import DropdownCategories from "./DropdownCategories";
 import CategoryMegaMenu from "./CategoryMegaMenu";
 import LocationDropdown from "./LocationDropdown";
@@ -31,6 +32,9 @@ export default function Navbar() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const browseRef = useRef<HTMLDivElement | null>(null);
   const navRef = useRef<HTMLDivElement | null>(null);
+  const [query, setQuery] = useState("");
+  const [mQuery, setMQuery] = useState("");
+  const router = useRouter();
 
   useEffect(() => {
     function handleClick(e: MouseEvent) {
@@ -67,16 +71,34 @@ export default function Navbar() {
               <div className="flex items-center gap-3">
                 <LocationDropdown value="Lagos" onChange={() => {}} />
 
-                <div className="flex items-center overflow-hidden rounded-md border border-orange-500 shadow-sm">
+                <form
+                  onSubmit={(e) => {
+                    e.preventDefault();
+                    if (query.trim()) {
+                      router.push(`/search?search=${encodeURIComponent(query.trim())}`);
+                    }
+                  }}
+                  className="flex items-center overflow-hidden rounded-md border border-orange-500 shadow-sm"
+                >
                   <input
                     type="text"
                     placeholder="I am looking for..."
+                    value={query}
+                    onChange={(e) => setQuery(e.target.value)}
                     className="w-72 px-4 py-2 text-sm text-black placeholder:text-black/50 outline-none"
                   />
-                  <button className="flex items-center justify-center bg-orange-500 px-4 py-2.5 text-white hover:bg-orange-600 transition-colors">
+                  <button
+                    type="submit"
+                    onClick={() => {
+                      if (query.trim()) {
+                        router.push(`/search?search=${encodeURIComponent(query.trim())}`);
+                      }
+                    }}
+                    className="flex items-center justify-center bg-orange-500 px-4 py-2.5 text-white hover:bg-orange-600 transition-colors"
+                  >
                     <Search size={16} />
                   </button>
-                </div>
+                </form>
               </div>
             </div>
 
@@ -143,16 +165,36 @@ export default function Navbar() {
               <LocationDropdown value="Lagos" onChange={() => {}} />
             </div>
 
-            <div className="flex flex-1 items-center overflow-hidden rounded-lg border border-orange-500 bg-white h-[42px]">
+            <form
+              onSubmit={(e) => {
+                e.preventDefault();
+                if (mQuery.trim()) {
+                  setMobileMenuOpen(false);
+                  router.push(`/search?search=${encodeURIComponent(mQuery.trim())}`);
+                }
+              }}
+              className="flex flex-1 items-center overflow-hidden rounded-lg border border-orange-500 bg-white h-[42px]"
+            >
               <input
                 type="text"
                 placeholder="I am looking for..."
+                value={mQuery}
+                onChange={(e) => setMQuery(e.target.value)}
                 className="flex-1 px-3 text-sm text-black placeholder:text-gray-400 outline-none h-full"
               />
-              <button className="flex items-center justify-center bg-orange-500 px-4 h-full">
+              <button
+                type="submit"
+                onClick={() => {
+                  if (mQuery.trim()) {
+                    setMobileMenuOpen(false);
+                    router.push(`/search?search=${encodeURIComponent(mQuery.trim())}`);
+                  }
+                }}
+                className="flex items-center justify-center bg-orange-500 px-4 h-full"
+              >
                 <Search size={18} className="text-white" />
               </button>
-            </div>
+            </form>
           </div>
         </div>
       </div>
@@ -213,16 +255,36 @@ export default function Navbar() {
                 </div>
 
                 {/* Search Bar */}
-                <div className="flex flex-1 items-stretch overflow-hidden rounded-lg border border-orange-500 bg-white">
+                <form
+                  onSubmit={(e) => {
+                    e.preventDefault();
+                    if (mQuery.trim()) {
+                      setMobileMenuOpen(false);
+                      router.push(`/search?search=${encodeURIComponent(mQuery.trim())}`);
+                    }
+                  }}
+                  className="flex flex-1 items-stretch overflow-hidden rounded-lg border border-orange-500 bg-white"
+                >
                   <input
                     type="text"
                     placeholder="I am looking for..."
+                    value={mQuery}
+                    onChange={(e) => setMQuery(e.target.value)}
                     className="flex-1 px-3 text-sm text-black placeholder:text-gray-400 outline-none"
                   />
-                  <button className="flex items-center justify-center bg-orange-500 px-4">
+                  <button
+                    type="submit"
+                    onClick={() => {
+                      if (mQuery.trim()) {
+                        setMobileMenuOpen(false);
+                        router.push(`/search?search=${encodeURIComponent(mQuery.trim())}`);
+                      }
+                    }}
+                    className="flex items-center justify-center bg-orange-500 px-4"
+                  >
                     <Search size={18} className="text-white" />
                   </button>
-                </div>
+                </form>
               </div>
 
               {/* Login/Signup Buttons */}

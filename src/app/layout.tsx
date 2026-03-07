@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
+import Providers from "./providers";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -13,15 +14,8 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: {
-    default: "234Deals — Nigeria’s #1 Marketplace",
-    template: "%s | 234Deals",
-  },
-  description: "234Deals is a modern marketplace platform for buying and selling in Nigeria.",
-  metadataBase: new URL("https://www.example-234deals.com"),
-  alternates: {
-    canonical: "/",
-  },
+  title: "234 Deals",
+  description: "Marketplace platform",
 };
 
 export default function RootLayout({
@@ -32,7 +26,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${geistSans.variable} ${geistMono.variable} antialiased pb-20 md:pb-0`}>
-        {children}
+        <Providers>{children}</Providers>
       </body>
     </html>
   );

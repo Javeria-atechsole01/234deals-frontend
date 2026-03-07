@@ -2,11 +2,12 @@ import type { NextConfig } from "next";
 import path from "path";
 
 const nextConfig: NextConfig = {
-  // Vercel expects the default ".next" output directory
+  /* config options here */
+  distDir: 'dist',
   turbopack: {
     root: __dirname,
     resolveAlias: {
-      "@": path.resolve(__dirname, "src"),
+      '@': path.resolve(__dirname, 'src'),
     },
   },
 };
